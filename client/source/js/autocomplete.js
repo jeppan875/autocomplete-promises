@@ -14,20 +14,18 @@ function Autocomplete (input, config) {
     }
 
     let ajaxConfig = {
-      method: 'POST',
       contentType: 'application/json',
       url: config.url,
       query: JSON.stringify(query)
     }
 
-    ajax.request(ajaxConfig, function (error, data) {
-      if (error) {
-        throw new Error('Network error' + error)
-      }
+    ajax.post(ajaxConfig).then(function (data) {
       data = JSON.parse(data)
       populateDatalist(datalist, data.match.map(function (team) {
         return team.name
-      }))
+      })).catch(function (error) {
+        console.log(error)
+      })
     })
   })
 }

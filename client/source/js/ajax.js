@@ -1,3 +1,5 @@
+const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
+
 module.exporta = {
   request: request,
   post: post,
@@ -30,12 +32,12 @@ function request (config, callback) {
   })
 }
 
-function post (config, callback) {
+function post (config) {
   config.method = 'POST'
-  request(config, callback)
+  request(config)
 }
 
-function get (config, callback) {
+function get (config) {
   config.method = 'GET'
-  request(config, callback)
+  request(config)
 }
